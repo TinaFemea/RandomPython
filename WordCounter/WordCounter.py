@@ -24,6 +24,26 @@ def processWordList(listOfWords, wordDict):
         else:
             wordDict[lowercaseTrimmedWord] = 1
 
+def invertDictionary(wordDict):
+    invertedDict = {}
+    for currentWord in wordDict:
+        wordCount = wordDict[currentWord]
+        if not wordCount in invertedDict:
+            invertedDict[wordCount] = []
+        invertedDict[wordCount].append(currentWord)
+    return invertedDict
+
+
+def prettyPrintInvertedWordList(invertedList):
+    sortedKeys = invertedList.keys()
+    sortedKeys.sort()
+    for currentCount in sortedKeys:
+        wordsForCount = invertedList[currentCount]
+        wordsForCount.sort()
+        print "%d:" % currentCount
+        for thisWord in wordsForCount:
+            print "    %s" % thisWord
+
 
 def prettyPrintWordList(wordDict):
     """ Prints the dictionary, sorted, in a human-readable way"""
@@ -69,6 +89,8 @@ while currentLine != '':
     currentLine = f.readline()
 
 prettyPrintWordList(wordDict)
+invertedDictionary = invertDictionary(wordDict)
+prettyPrintInvertedWordList(invertedDictionary)
 
 """  Test cases
 print trimPunctuation(".")
