@@ -25,6 +25,7 @@ def processWordList(listOfWords, wordDict):
             wordDict[lowercaseTrimmedWord] = 1
 
 def invertDictionary(wordDict):
+    """Takes a dictionary of word:count and returns it as a dictionary of count:list of words"""
     invertedDict = {}
     for currentWord in wordDict:
         wordCount = wordDict[currentWord]
@@ -35,6 +36,7 @@ def invertDictionary(wordDict):
 
 
 def prettyPrintInvertedWordList(invertedList):
+    """Pretty-prints a dictionary of count:list of words"""
     sortedKeys = invertedList.keys()
     sortedKeys.sort()
     for currentCount in sortedKeys:
@@ -46,7 +48,7 @@ def prettyPrintInvertedWordList(invertedList):
 
 
 def prettyPrintWordList(wordDict):
-    """ Prints the dictionary, sorted, in a human-readable way"""
+    """ Prints the dictionary of type word:count, sorted, in a human-readable way"""
     sortedKeys = wordDict.keys()
     sortedKeys.sort()
     for currentWord in sortedKeys:

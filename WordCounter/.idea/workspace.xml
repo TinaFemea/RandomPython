@@ -5,7 +5,7 @@
     <ignored path="WordCounter.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="b667a9bd-bc58-49fa-a2f1-a0c3f1aeb725" time="1369958131032" ignored="false" />
-    <file path="/WordCounter.py" changelist="b667a9bd-bc58-49fa-a2f1-a0c3f1aeb725" time="1369959177801" ignored="false" />
+    <file path="/WordCounter.py" changelist="b667a9bd-bc58-49fa-a2f1-a0c3f1aeb725" time="1369959397749" ignored="false" />
     <file path="/tmp.py" changelist="b667a9bd-bc58-49fa-a2f1-a0c3f1aeb725" time="1369951286714" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +29,7 @@
       <file leaf-file-name="WordCounter.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WordCounter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="867" selection-end="867" vertical-scroll-proportion="0.27248678">
+            <state line="102" column="29" selection-start="2979" selection-end="2979" vertical-scroll-proportion="0.93386245">
               <folding />
             </state>
           </provider>
@@ -413,7 +413,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WordCounter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="867" selection-end="867" vertical-scroll-proportion="0.27248678">
+        <state line="102" column="29" selection-start="2979" selection-end="2979" vertical-scroll-proportion="0.93386245">
           <folding />
         </state>
       </provider>
