@@ -52,26 +52,48 @@ def PopulateDictionaryForRow(row, scoreTable):
     # who have we played?
     AddTeamMatchup(team1, team2, scoreTable)
 
+def ReadInCSVFile(fileName, scoreTable):
+    with open(fileName, 'rb') as csvfile:
+        myReader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in myReader:
+            PopulateDictionaryForRow(row, scoreTable)
+
+def CheckForMissingGames(scoreTable):
+    for team in scoreTable:
+        if len(scoreTable[team]["played"]) != len(scoreTable) - 1:
+            print ("%s is missing games" % team)
+
+def BuildPlaceTable(scoreTable, placeTable):
+    for team in scoreTable:
+        score = scoreTable[team]["score"]
+
+        if not score in placeTable:
+            placeTable[score] = []
+
+        placeTable[score].append(team)
+
+def FigureOutPlaces(scoreTable):
+    placeTable = {}
+    BuildPlaceTable(scoreTable, placeTable)
+    keylist = placeTable.keys()
+    keylist.sort(reverse=True)
+
+    #for key in keylist:
+    #    print "Wins: %d.  Teams: %s" % (key, ", ".join(placeTable[key] ))
+
+    numTeamsPlaced = 0
+    keyIndex = 0
+    while numTeamsPlaced < 3 and keyIndex < len(keylist):
+        if (numTeamsPlaced == 0):
+            print "First Place: %s" % ", ".join(placeTable[keylist[keyIndex]])
+        elif (numTeamsPlaced == 1):
+            print "Second Place: %s" % ", ".join(placeTable[keylist[keyIndex]])
+        elif (numTeamsPlaced == 2):
+            print "Third Place: %s" % ", ".join(placeTable[keylist[keyIndex]])
+        numTeamsPlaced += len(placeTable[keylist[keyIndex]])
+        keyIndex += 1
 
 scoreTable = {}
-with open('hockey.csv', 'rb') as csvfile:
-    myReader = csv.reader(csvfile, delimiter=',', quotechar='"')
-    for row in myReader:
-        PopulateDictionaryForRow(row, scoreTable)
-
-placeTable = {}
-for team in scoreTable:
-    if len(scoreTable[team]["played"]) != len(scoreTable) - 1:
-        print ("%s is missing games" % team)
-    score = scoreTable[team]["score"]
-
-    if not score in placeTable:
-        placeTable[score] = []
-
-    placeTable[score].append(team)
-
-keylist = placeTable.keys()
-keylist.sort(reverse=True)
-
-for key in keylist:
-    print "Wins: %d.  Teams: %s" % (key, ", ".join(placeTable[key] ))
+ReadInCSVFile("hockey.csv", scoreTable)
+CheckForMissingGames(scoreTable)
+FigureOutPlaces(scoreTable)
