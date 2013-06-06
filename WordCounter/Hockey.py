@@ -1,17 +1,20 @@
 __author__ = 'Tina'
 import csv
 
+
 def AsNumber(score):
     score = score.strip()
     if not score.isdigit():
-        raise ValueError("%s is not a number"%score)
+        raise ValueError("%s is not a number" % score)
     return int(score)
+
 
 def AddTeamIfNotExists(teamName, scoreTable):
     if not teamName in scoreTable:
         scoreTable[teamName] = {}
         scoreTable[teamName]["played"] = []
         scoreTable[teamName]["score"] = 0
+
 
 def AddTeamMatchup(team1, team2, scoreTable):
     if team2 in scoreTable[team1]:
@@ -23,6 +26,7 @@ def AddTeamMatchup(team1, team2, scoreTable):
         raise ValueError("%s played %s more then once" % (team2, team1))
     else:
         scoreTable[team2]["played"].append(team1)
+
 
 def PopulateDictionaryForRow(row, scoreTable):
     if len(row) != 4:
@@ -49,12 +53,25 @@ def PopulateDictionaryForRow(row, scoreTable):
     AddTeamMatchup(team1, team2, scoreTable)
 
 
-
-
 scoreTable = {}
 with open('hockey.csv', 'rb') as csvfile:
     myReader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in myReader:
         PopulateDictionaryForRow(row, scoreTable)
 
-print scoreTable
+placeTable = {}
+for team in scoreTable:
+    if len(scoreTable[team]["played"]) != len(scoreTable) - 1:
+        print ("%s is missing games" % team)
+    score = scoreTable[team]["score"]
+
+    if not score in placeTable:
+        placeTable[score] = []
+
+    placeTable[score].append(team)
+
+keylist = placeTable.keys()
+keylist.sort(reverse=True)
+
+for key in keylist:
+    print "Wins: %d.  Teams: %s" % (key, ", ".join(placeTable[key] ))
