@@ -1,0 +1,12 @@
+blah blah
+stuff that doesn't get changed
+this is an original
+line of text
+and something spurious
+with some context
+and some more immutable lines
+this is another block
+of text
+that needs to be changed
+with more stuff
+that doesn't get altered
